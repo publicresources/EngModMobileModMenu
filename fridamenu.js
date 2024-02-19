@@ -230,7 +230,7 @@ class Menu {
 
         const SeekBarChangeListener = Java.use("android.widget.SeekBar$OnSeekBarChangeListener");
         const SeekBarChangeListenerImplementation = Java.registerClass({
-            name: "com.example.SeekBarChangeListener",
+            name: "com.example.SeekBarChangeListener"+encodeURIComponent(Math.random()),
             implements: [SeekBarChangeListener],
             methods: {
                 onProgressChanged(seekBar, progress, fromUser) {
@@ -284,7 +284,7 @@ class Menu {
         let isMenuLayout = false
         let initialTouchTime = 0
         const MainLayoutOnTouchListener = Java.registerClass({
-            name: "com.example.MainLayoutEvent",
+            name: "com.example.MainLayoutEvent"+encodeURIComponent(Math.random()),
             implements: [classLoader.View_OnTouchListener],
             methods: {
                 onTouch(view, event) {
@@ -389,11 +389,21 @@ Java.perform(function () {
         menu.addOption("option1", "Option 1", option1)
         menu.addOption("option2", "Option 2", option2)
         menu.addOption("option3", "Option 3", option3)
+        menu.addText("Configuração da arma",12,"#ffffff")
         menu.addSeekBar("Velocidade:",1, 1, 100, function (changed, state) {
             if ( state == "end")
             console.log("Movo Valor: ", changed)
         })
 
+        menu.addSeekBar("Pente:",1, 1, 100, function (changed, state) {
+            if ( state == "end")
+            console.log("Movo Valor: ", changed)
+        })
+
+        menu.addOption("option3", "Option 3", option3)
+
+
+        menu.addText("Movimento e saltos",12,"#00ff00")
        
         menu.start()
     })
